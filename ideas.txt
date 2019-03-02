@@ -1,0 +1,4 @@
+1) Create a resume generator that takes input in the form of phone number/name etc.
+and then outputs a pdf resume (using pypdf module)
+
+2) Lyric generator which uses a dataset of lyrics and outputs possible lyrics
