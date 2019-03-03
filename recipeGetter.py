@@ -1,12 +1,12 @@
 import urllib
-import urllib2
-import webbrowser
+import getRecipeLink
 
-data = urllib.urlencode({'q': 'egg, spinach'})
-url = 'https://recipeland.com/recipes/ingredients/search'
-full_url = url + '?' + data
-response = urllib2.urlopen(full_url)
-with open("results.html", "w") as f:
-    f.write(response.read())
 
-webbrowser.open("results.html")
+
+def getHTML(ingredients):
+    data = urllib.parse.urlencode({'q': getRecipeLink.getLink(ingredients)})
+    url = 'https://recipeland.com/recipes/list?q='
+    full_url = url + '?' + data
+    response = urllib.request.urlopen(full_url)
+    with open("results.html", "wb") as f:
+        f.write(response.read())

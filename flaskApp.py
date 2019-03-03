@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 import downloadImgurImages
 import getImageLabels
+import recipeGetter
 import os
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
@@ -14,7 +15,8 @@ def home():
         imgurAlbum = request.form['imgur']
         folderName = downloadImgurImages.downloadImages(imgurAlbum)
         foodList = getImageLabels.getLabels(folderName)
-        return render_template('indexWithRecipe.html', foodList=foodList)
+        recipeHTML = recipeGetter.getHTML(foodList)
+        return render_template('indexWithRecipe.html', foodList=foodList, recipeHTML=recipeHTML)
     return render_template('index.html')
 
 if __name__ == "main":
