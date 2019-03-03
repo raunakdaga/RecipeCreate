@@ -15,6 +15,7 @@ def home():
         imgurAlbum = request.form['imgur']
         folderName = downloadImgurImages.downloadImages(imgurAlbum)
         foodList = getImageLabels.getLabels(folderName)
+        print(foodList)
         recipeHTML = recipeGetter.getHTML(foodList)
         return render_template('indexWithRecipe.html', foodList=foodList, recipeHTML=recipeHTML)
     return render_template('index.html')
