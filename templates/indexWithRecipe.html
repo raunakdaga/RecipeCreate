@@ -27,6 +27,13 @@
 									<input type="text" name="imgur">
 									<input class="btn btn-primary" type="submit" value="submit">
 								</form>
+                                <p>
+                                    Your Ingredients:
+
+                                    {% for food in foodList %}
+                                        {{food + '|'}} 
+                                    {% endfor %}
+                                </p>
 							</div>
 						</div>
 					</section>

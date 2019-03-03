@@ -1,20 +1,21 @@
 from flask import Flask, render_template, request
 import downloadImgurImages
+import getImageLabels
+import os
+
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "apikey.json"
 
 app = Flask(__name__, static_folder='static', static_url_path='')
 
-@app.route("/")
-@app.route("/index")
+@app.route("/", methods=['GET', 'POST'])
 def home():
-    return render_template('index.html')
-
-@app.route("/gpa", methods=['GET', 'POST'])
-def gpa():
     if request.method == "POST":
         imgurAlbum = request.form['imgur']
         folderName = downloadImgurImages.downloadImages(imgurAlbum)
-        
-        return render_template('getRecipe.html')
-    return render_template('getRecipe.html')
+        foodList = getImageLabels.getLabels(folderName)
+        return render_template('indexWithRecipe.html', foodList=foodList)
+    return render_template('index.html')
+
 if __name__ == "main":
     app.run(debug=True)

@@ -1,16 +1,12 @@
-import re
-import string
-#x = "This is a sentence. (once a day) [twice a day]"
-#re.sub("[\(\[].*?[\)\]]", "", x)
+import os
 
-toRemove = "''!()-[]{};-:',<>./?@#$%^&*_1234567890'"
-noPunct = "";
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
+
 file = "ingredients.txt"
 with open(file, "r+") as f:
-    for line in f:
-        for char in line:
-            if char not in toRemove:
-                noPunct = noPunct+char
-noPunct.lower()
-
-file.write(noPunct)
+    whitelist = set('abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+    fileString = f.read()
+    fileString = ''.join(filter(whitelist.__contains__, fileString))
+    fileString = fileString.lower()
+    f.write(fileString)

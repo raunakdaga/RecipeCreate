@@ -3,14 +3,16 @@ import os
 from google.cloud import vision
 from google.cloud.vision import types
 
-client = vision.ImageAnnotatorClient()
-file_name = os.path.join(os.path.dirname(__file__), 'apple.jpg')
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "apikey.json"
 
-foods = []
+client = vision.ImageAnnotatorClient()
+
 
 def getLabels(albumid):
+    foods = []
     for fileID in os.listdir(albumid):
-        file_name = os.path.join(os.path.dirname(__file__), (albumid + '/' + fileID))
+        file_name = os.path.join(os.path.dirname(__file__), (albumid + '\\' + fileID))
         with io.open(file_name, 'rb') as image:
             content = image.read()
 
@@ -18,6 +20,18 @@ def getLabels(albumid):
         response = client.label_detection(image=image)
         labels = response.label_annotations
 
-        for label in labels:
-            if(label in open('ingredients.txt', 'r').read().split('/n')):
-                foods.append(label.description)
+        chosenLabel = getOneLabel(labels)
+        if chosenLabel:
+            foods.append(chosenLabel)
+
+    newFoods = []
+    for i in foods:
+        if i not in newFoods:
+            newFoods.append(i)
+    return newFoods
+
+def getOneLabel(labels):
+    for label in labels:
+        if(label.description.lower() in open('ingredients.txt', 'r').read().lower().split('\n')):
+            return label.description
+    return ''
