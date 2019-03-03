@@ -4,8 +4,7 @@ from google.cloud import vision
 from google.cloud.vision import types
 
 client = vision.ImageAnnotatorClient()
-
-file_name = os.path.join(os.path.dirname(__file__), 'bike.jpg')
+file_name = os.path.join(os.path.dirname(__file__), )
 
 with io.open(file_name, 'rb') as image:
     content = image.read()
