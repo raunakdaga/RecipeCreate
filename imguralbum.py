@@ -29,6 +29,7 @@ Example:
     $ python imguralbum.py http://imgur.com/a/uOOju#6 /Users/alex/images
 If you omit the dest folder name, the utility will create one with the same name
 as the album
+
 (for example for http://imgur.com/a/uOOju it'll create uOOju/ in the cwd)
 """
 

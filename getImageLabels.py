@@ -11,6 +11,7 @@ client = vision.ImageAnnotatorClient()
 
 def getLabels(albumid):
     foods = []
+    
     for fileID in os.listdir(albumid):
         file_name = os.path.join(os.path.dirname(__file__), (albumid + '\\' + fileID))
         with io.open(file_name, 'rb') as image:
