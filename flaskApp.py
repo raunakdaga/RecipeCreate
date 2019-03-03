@@ -13,8 +13,8 @@ def gpa():
     if request.method == "POST":
         imgurAlbum = request.form['imgur']
         folderName = downloadImgurImages.downloadImages(imgurAlbum)
-
-        return render_template('generic.html')
-    return render_template('generic.html')
+        
+        return render_template('getRecipe.html')
+    return render_template('getRecipe.html')
 if __name__ == "main":
     app.run(debug=True)

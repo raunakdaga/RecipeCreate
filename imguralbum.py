@@ -204,8 +204,8 @@ if __name__ == '__main__':
 
     except ImgurAlbumException as e:
         print(("Error: " + e.msg))
-        print ("")
-        print ("How to use")
-        print ("=============")
-        print (help_message)
+        print("")
+        print("How to use")
+        print("=============")
+        print(help_message)
         exit(1)
