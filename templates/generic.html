@@ -36,7 +36,11 @@
 					<!		<span class="image fit" 1 here <img src="images/pic04.jpg" alt="" / 1 here </span 1 here >
 							<p></p>
 								<div style="text-align: center;">
-	   							<input type="button" value="Upload Picture of Ingredient">
+									<form action="upload.php" method="post" enctype="multipart/form-data">
+    								Select image to upload:
+    								<input type="file" name="fileToUpload" id="fileToUpload">
+									</form>
+	   							<input type="button" value="Upload Picture of Ingredient"></button>
 								</div>
 							<p></p>
 						</div>
