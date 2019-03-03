@@ -5,12 +5,12 @@ import string
 
 toRemove = "''!()-[]{};-:',<>./?@#$%^&*_1234567890'"
 noPunct = "";
-
-with open("ingredients.txt", "r+") as f:
+file = "ingredients.txt"
+with open(file, "r+") as f:
     for line in f:
         for char in line:
             if char not in toRemove:
                 noPunct = noPunct+char
 noPunct.lower()
 
-print(noPunct)
+file.write(noPunct)
