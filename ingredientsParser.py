@@ -1,17 +1,16 @@
-import collections
-import string
 import re
+import string
+#x = "This is a sentence. (once a day) [twice a day]"
+#re.sub("[\(\[].*?[\)\]]", "", x)
 
-# load text
-filename = 'ingredients.txt'
-file = open(filename, 'rt')
-text = file.read()
-file.close()
+toRemove = "''!()-[]{};-:',<>./?@#$%^&*_1234567890'"
+noPunct = "";
 
-words = text.split()
-words = [word.lower() for word in words]
+with open("ingredients.txt", "r+") as f:
+    for line in f:
+        for char in line:
+            if char not in toRemove:
+                noPunct = noPunct+char
+noPunct.lower()
 
-table = str.maketrans('', '', string.punctuation)
-stripped = [w.translate(table) for w in words]
-
-print(words[:100])
+print(noPunct)
